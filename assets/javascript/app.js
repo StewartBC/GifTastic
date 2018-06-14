@@ -1,6 +1,8 @@
+// array holding button names
 var pokemon = ["bulbasaur", "venusaur", "blastoise", "charmander", "charizard", "pikachu", "raichu", "caterpie", "butterfree",
     "scyther", "magikarp", "gyarados", "weedle", "lapras", "pidgey", "dragonite", "pinsir", "chansey", "mewtwo", "mew"];
 
+// function to render the buttons from the array
 function renderButtons() {
     for (i = 0; i < pokemon.length; i++) {
         var pokemonButton = $("<button>");
@@ -11,6 +13,7 @@ function renderButtons() {
     }
 }
 
+// click listener to add a new item to the array and make it into a button
 $("#addPokemon").on("click", function (event) {
     event.preventDefault();
     var poke = $("#pokemon-input").val();
@@ -26,6 +29,7 @@ $("#addPokemon").on("click", function (event) {
     }
 });
 
+// click listener for the buttons that uses AJAX to get api from giphy and display gifs to the user
 $(document).on("click", ".pokemon-button", function () {
     var name = pokemon[$(this).attr("data-pokemon")];
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=7gKGW7OQzykULNtUvZFcEiuieezrbcc4&limit=10";
@@ -59,6 +63,7 @@ $(document).on("click", ".pokemon-button", function () {
     });
 });
 
+// click listener for each image that changes the image from still to gif or vice versa
 $(document).on("click", ".pokemon-images", function () {
     var state = $(this).attr("data-state");
     var still = $(this).attr("data-still");
@@ -72,4 +77,5 @@ $(document).on("click", ".pokemon-images", function () {
     }
 });
 
+// call render buttons function to render the original buttons
 renderButtons();
